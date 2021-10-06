@@ -21,5 +21,11 @@ public class Account {
     }
 
 
+    public void getTradesUnder10(){
+        for (Trade trade : tradeList){
+            if (trade.getPrice() < 10.00) System.out.println(trade);;
+        }
+    }
+
 
 }

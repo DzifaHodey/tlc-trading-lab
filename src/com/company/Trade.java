@@ -1,6 +1,7 @@
 package com.company;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public abstract class Trade {
 
@@ -8,7 +9,7 @@ public abstract class Trade {
     private String symbol;
     private int quantity;
     private double price;
-    private final LocalDate dateCreated;
+
 
     abstract double calcDividend();
 
@@ -16,7 +17,7 @@ public abstract class Trade {
         this.id = id;
         this.symbol = symbol;
         this.quantity = quantity;
-        this.dateCreated = LocalDate.now();
+
         if (price > 0){
             this.price = price;
         }
@@ -30,7 +31,7 @@ public abstract class Trade {
         this.id = id;
         this.symbol = symbol;
         this.quantity = quantity;
-        this.dateCreated = LocalDate.now();
+
     }
 
     @Override
@@ -44,7 +45,12 @@ public abstract class Trade {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        if (price > 0){
+            this.price = price;
+        }
+        else{
+            throw new IllegalArgumentException("Price cannot be a negative value");
+        }
     }
 
 
@@ -56,9 +62,7 @@ public abstract class Trade {
         return quantity;
     }
 
-    public LocalDate getDateCreated() {
-        return dateCreated;
-    }
+
 
     //
 //    public void setQuantity(int quantity) {

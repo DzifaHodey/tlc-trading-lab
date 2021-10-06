@@ -8,14 +8,13 @@ class ClientTest {
 
     Client dzifa = new Client("dzifa", "hodey");
     Trade tesla = new BondTrade("tesla", "TS", 10000, 3350.00, 200.00);
-    @Test
-    void setMembershipType()  {
 
-    }
 
     @Test
     void testAddTrade() throws Exception {
         dzifa.addTrade(tesla);
+        assertTrue(dzifa.tradeList.contains(tesla));
+
     }
 
     @Test
