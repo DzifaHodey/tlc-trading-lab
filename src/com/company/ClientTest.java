@@ -13,6 +13,7 @@ class ClientTest {
     @Test
     void testAddTrade() throws Exception {
         dzifa.addTrade(tesla);
+
         assertTrue(dzifa.tradeList.contains(tesla));
 
     }

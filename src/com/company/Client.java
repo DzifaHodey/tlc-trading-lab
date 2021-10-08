@@ -68,10 +68,14 @@ public class Client {
 
     public void addTrade(Trade newTrade) throws Exception {
         if (this.canTrade()) {
-            tradeList.add(newTrade);
-            this.points++;
-            setMembershipType();
-            tradeTimeStamp.put(LocalDate.now(), newTrade);
+            if (!tradeList.stream().anyMatch(oldTrade -> oldTrade.getId().equals(newTrade.getId()))){
+                tradeList.add(newTrade);
+                this.points++;
+                setMembershipType();
+                tradeTimeStamp.put(LocalDate.now(), newTrade);
+            }
+            else throw new TradeIDException("ID already exists");
+
         } else throw new Exception("Trade limit exceeded. Try again tomorrow.");
 
     }
@@ -79,4 +83,9 @@ public class Client {
     public ArrayList<Trade> getTradeList() {
         return tradeList;
     }
+
+
+
 }
+
+
